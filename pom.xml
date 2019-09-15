@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>micronaut-learning-example</name>
+
+    <groupId>micronaut</groupId>
+    <artifactId>micronaut-learning-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!-- 第一个Hello World App -->
+        <module>micronaut-hello-world</module>
+        <!-- 集成Swagger 3-->
+        <module>micronaut-swagger3</module>
+        <!-- 集成 mybatis-->
+        <module>micronaut-data-access-mybatis</module>
+    </modules>
+</project>
