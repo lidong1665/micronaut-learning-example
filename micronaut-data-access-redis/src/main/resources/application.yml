@@ -11,10 +11,10 @@ micronaut:
     additional:
       files: ${project.home}/src/test/resources/swagger
   server:
-    cors:
+    cors: #解决跨域
       enabled: true
 redis:
-  uri: redis://aihuhuiredis163com@127.0.0.1:6379/5?timeout=60s
+  uri: redis://xxxxxxx@127.0.0.1:6379/5?timeout=60s
 
 
 

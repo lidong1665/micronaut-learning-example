@@ -1,12 +1,13 @@
 package example.micronaut;
 
 import io.lettuce.core.api.StatefulRedisConnection;
-import io.lettuce.core.api.sync.RedisCommands;
+import io.lettuce.core.api.reactive.RedisReactiveCommands;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.validation.Validated;
-import io.reactivex.Single;
+import reactor.core.publisher.Mono;
+
 import javax.inject.Inject;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -26,11 +27,11 @@ public class HelloController {
      * @return
      */
     @Get(uri = "/getStringByMoible/{name}", produces = MediaType.TEXT_PLAIN)
-    public Single<String> getStringByMoible(@NotBlank String name) {
+    public Mono<String> getStringByMoible(@NotBlank String name) {
         System.out.println("name="+name);
-        RedisCommands<String, String> redisCommands = connection.sync();
-        final String mobile = redisCommands.get(name);
-        return Single.just(mobile);
+        RedisReactiveCommands<String, String> redisReactiveCommands = connection.reactive();
+        Mono<String> mono = redisReactiveCommands.get(name);
+        return mono;
     }
 
     /**
@@ -40,12 +41,12 @@ public class HelloController {
      * @return
      */
     @Get(uri = "/saveString/{name}/{mobile}", produces = MediaType.TEXT_PLAIN)
-    public Single<String> saveString(@NotBlank String name,@NotBlank String mobile) {
+    public Mono<String> saveString(@NotBlank String name,@NotBlank String mobile) {
         System.out.println("name="+name);
         System.out.println("mobile="+mobile);
-        RedisCommands<String, String> redisCommands = connection.sync();
-        String result = redisCommands.set(name, mobile);
-        return Single.just(result);
+        RedisReactiveCommands<String, String> redisReactiveCommands = connection.reactive();
+        Mono<String> result = redisReactiveCommands.set(name, mobile);
+        return result;
     }
 
     /**
@@ -54,16 +55,16 @@ public class HelloController {
      * @return
      */
     @Get(uri = "/saveList/{name}", produces = MediaType.TEXT_PLAIN)
-    public Single<List<Long>> saveList(@NotBlank String name) {
+    public Mono<List<Long>> saveList(@NotBlank String name) {
         System.out.println("name="+name);
         String[] names = new String[]{"name1","mame2","name3"};
-        RedisCommands<String, String> redisCommands = connection.sync();
-        List<Long> aL = new ArrayList<>();
+        RedisReactiveCommands<String, String> redisReactiveCommands = connection.reactive();
+        List <Long> ls = new ArrayList<>();
         Arrays.stream(names).forEach(s -> {
-            Long lpush = redisCommands.lpush(name, s);
-            aL.add(lpush);
+            Mono<Long> lpush = redisReactiveCommands.lpush(name, s);
+            ls.add(lpush.block());
         });
-        return Single.just(aL);
+        return Mono.just(ls);
     }
 
 }
