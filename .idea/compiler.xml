@@ -52,12 +52,16 @@
           <entry name="$USER_HOME$/.m2/repository/io/swagger/core/v3/swagger-annotations/2.0.4/swagger-annotations-2.0.4.jar" />
           <entry name="$USER_HOME$/.m2/repository/io/swagger/core/v3/swagger-models/2.0.4/swagger-models-2.0.4.jar" />
         </processorPath>
+        <module name="micronaut-data-access-mongodb" />
         <module name="micronaut-data-access-mybatis" />
+        <module name="micronaut-data-access-redis" />
         <module name="micronaut-swagger3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="micronaut-data-access-mongodb" target="1.8" />
       <module name="micronaut-data-access-mybatis" target="1.8" />
+      <module name="micronaut-data-access-redis" target="1.8" />
       <module name="micronaut-hello-world" target="1.8" />
       <module name="micronaut-learning-example" target="1.5" />
       <module name="micronaut-swagger3" target="1.8" />
@@ -65,7 +69,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="micronaut-data-access-mongodb" options="-parameters" />
       <module name="micronaut-data-access-mybatis" options="-parameters" />
+      <module name="micronaut-data-access-redis" options="-parameters" />
       <module name="micronaut-hello-world" options="-parameters" />
       <module name="micronaut-swagger3" options="-parameters" />
     </option>

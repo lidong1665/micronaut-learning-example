@@ -15,5 +15,9 @@
         <module>micronaut-swagger3</module>
         <!-- 集成 mybatis-->
         <module>micronaut-data-access-mybatis</module>
+        <!-- 集成 redis-->
+        <module>micronaut-data-access-redis</module>
+        <!-- 集成 mongodb-->
+        <module>micronaut-data-access-mongodb</module>
     </modules>
 </project>

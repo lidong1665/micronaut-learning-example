@@ -1,0 +1,18 @@
+micronaut:
+  application:
+    name: hello-world
+  router:
+    static-resources:
+      swagger:
+        enabled: true
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+  openapi:
+    additional:
+      files: ${project.home}/src/test/resources/swagger
+  server:
+    cors:
+      enabled: true
+mongodb:
+  uri: mongodb://worker:xxxxxxxxxxx@47.x.x.x:27017/xx
+

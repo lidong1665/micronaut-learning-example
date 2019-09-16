@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/micronaut-data-access-mongodb/micronaut-data-access-mongodb.iml" filepath="$PROJECT_DIR$/micronaut-data-access-mongodb/micronaut-data-access-mongodb.iml" />
       <module fileurl="file://$PROJECT_DIR$/micronaut-data-access-mybatis/micronaut-data-access-mybatis.iml" filepath="$PROJECT_DIR$/micronaut-data-access-mybatis/micronaut-data-access-mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/micronaut-data-access-mybatis/micronaut-data-access-mybatis.iml" filepath="$PROJECT_DIR$/micronaut-data-access-mybatis/micronaut-data-access-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micronaut-data-access-redis/micronaut-data-access-redis.iml" filepath="$PROJECT_DIR$/micronaut-data-access-redis/micronaut-data-access-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/micronaut-hello-world/micronaut-hello-world.iml" filepath="$PROJECT_DIR$/micronaut-hello-world/micronaut-hello-world.iml" />
       <module fileurl="file://$PROJECT_DIR$/micronaut-hello-world/micronaut-hello-world.iml" filepath="$PROJECT_DIR$/micronaut-hello-world/micronaut-hello-world.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/micronaut-learning-example.iml" filepath="$PROJECT_DIR$/.idea/micronaut-learning-example.iml" />

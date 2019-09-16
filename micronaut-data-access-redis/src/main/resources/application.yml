@@ -1,0 +1,20 @@
+micronaut:
+  application:
+    name: hello-world
+  router:
+    static-resources:
+      swagger:
+        enabled: true
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+  openapi:
+    additional:
+      files: ${project.home}/src/test/resources/swagger
+  server:
+    cors:
+      enabled: true
+redis:
+  uri: redis://aihuhuiredis163com@127.0.0.1:9078/5?timeout=60s
+
+
+
