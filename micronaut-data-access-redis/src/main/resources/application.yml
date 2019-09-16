@@ -14,7 +14,7 @@ micronaut:
     cors:
       enabled: true
 redis:
-  uri: redis://aihuhuiredis163com@127.0.0.1:9078/5?timeout=60s
+  uri: redis://aihuhuiredis163com@127.0.0.1:6379/5?timeout=60s
 
 
 
