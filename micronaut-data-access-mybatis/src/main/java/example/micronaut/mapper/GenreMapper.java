@@ -16,33 +16,32 @@ import java.util.List;
 
 public interface GenreMapper {
 
-    @Select("select * from mapper where id=#{id}")
+    @Select("select * from genre where id=#{id}")
     Genre findById(long id);
 
-    @Insert("insert into mapper(name) values(#{name})")
+    @Insert("insert into genre(name) values(#{name})")
     @Options(useGeneratedKeys = true)
     void save(Genre genre);
 
-    @Delete("delete from mapper where id=#{id}")
+    @Delete("delete from genre where id=#{id}")
     void deleteById(long id);
 
-    @Update("update mapper set name=#{name} where id=#{id}")
+    @Update("update genre set name=#{name} where id=#{id}")
     void update(@Param("id") long id, @Param("name") String name);
 
-    @Select("select * from mapper")
+    @Select("select * from genre")
     List<Genre> findAll();
 
-    @Select("select * from mapper order by ${sort} ${order}")
+    @Select("select * from genre order by ${sort} ${order}")
     List<Genre> findAllBySortAndOrder(@NotNull @Pattern(regexp = "id|name") String sort,
-                                             @NotNull @Pattern(regexp = "asc|ASC|desc|DESC") String order);
+                                      @NotNull @Pattern(regexp = "asc|ASC|desc|DESC") String order);
 
-    @Select("select * from mapper order by ${sort} ${order} limit ${offset}, ${max}")
+    @Select("select * from genre order by ${sort} ${order} limit ${offset}, ${max}")
     List<Genre> findAllByOffsetAndMaxAndSortAndOrder(@NotNull @PositiveOrZero Integer offset,
-                                                            @Positive @NotNull Integer max,
-                                                            @NotNull @Pattern(regexp = "id|name") String sort,
-                                                            @NotNull @Pattern(regexp = "asc|ASC|desc|DESC") String order);
+                                                     @Positive @NotNull Integer max,
+                                                     @NotNull @Pattern(regexp = "id|name") String sort,
+                                                     @NotNull @Pattern(regexp = "asc|ASC|desc|DESC") String order);
 
-    @Select("select * from mapper limit ${offset}, ${max}")
+    @Select("select * from genre limit ${offset}, ${max}")
     List<Genre> findAllByOffsetAndMax(@NotNull @PositiveOrZero Integer offset, @Positive @NotNull Integer max);
-
 }

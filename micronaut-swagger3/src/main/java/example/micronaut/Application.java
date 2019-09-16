@@ -34,14 +34,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         servers = {
                 @Server(
                         description = "server 1",
-                        url = "http://127.0.0.1:8089",
+                        url = "http://127.0.0.1:8080",
                         variables = {
                                 @ServerVariable(name = "var1", description = "var 1", defaultValue = "1", allowableValues = {"1", "2"}),
                                 @ServerVariable(name = "var2", description = "var 2", defaultValue = "1", allowableValues = {"1", "2"})
                         }),
                 @Server(
                         description = "server 2",
-                        url = "http://127.0.0.1:8089",
+                        url = "http://127.0.0.1:8080",
                         variables = {
                                 @ServerVariable(name = "var1", description = "var 1", defaultValue = "1", allowableValues = {"1", "2"}),
                                 @ServerVariable(name = "var2", description = "var 2", defaultValue = "1", allowableValues = {"1", "2"})
