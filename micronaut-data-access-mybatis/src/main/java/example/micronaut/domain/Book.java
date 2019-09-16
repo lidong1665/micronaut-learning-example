@@ -65,7 +65,7 @@ public class Book {
         sb.append(name);
         sb.append("', isbn='");
         sb.append(isbn);
-        sb.append("', genre='");
+        sb.append("', mapper='");
         sb.append(genre);
         sb.append("'}");
         return sb.toString();

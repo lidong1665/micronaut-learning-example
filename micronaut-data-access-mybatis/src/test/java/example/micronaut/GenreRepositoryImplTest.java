@@ -1,11 +1,14 @@
 package example.micronaut;
 
-import example.micronaut.genre.GenreRepository;
+import example.micronaut.domain.Genre;
+import example.micronaut.service.GenreRepository;
 import io.micronaut.test.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -32,7 +35,10 @@ public class GenreRepositoryImplTest {
     @Test
     public void constraintsAreValidatedForFindAll() {
         assertThrows(ConstraintViolationException.class, () -> {
-            genreRepository.findAll(null);
+            List<Genre> all = genreRepository.findAll(null);
+            all.stream().forEach(genre -> {
+                System.out.println(genre.getName());
+            });
         });
     }
 

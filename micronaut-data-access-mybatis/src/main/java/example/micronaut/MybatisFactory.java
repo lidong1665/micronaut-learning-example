@@ -23,7 +23,6 @@ public class MybatisFactory {
     @Bean // <3>
     SqlSessionFactory sqlSessionFactory() {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
-
         Environment environment = new Environment("dev", transactionFactory, dataSource); // <4>
         Configuration configuration = new Configuration(environment);
         configuration.addMappers("example.micronaut"); // <5>

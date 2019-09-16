@@ -52,23 +52,5 @@ public class Application {
 
     public static void main(String[] args) {
         Micronaut.run(Application.class);
-//        try (ApplicationContext context = ApplicationContext.run()) {
-//            HelloController myBean = context.getBean(HelloController.class);
-//            // do something with your bean
-//            myBean.hello("222222");
-//        }
-//        Vehicle vehicle = BeanContext.run().getBean(Vehicle.class);
-//        System.out.println(vehicle.start());
-
-//        TestController bean = BeanContext.run().getBean(TestController.class);
-//        System.out.println(bean.index());
-
-        try (ApplicationContext applicationContext = ApplicationContext.run()) {
-            applicationContext.publishEvent(new RefreshEvent());
-            WeatherService weatherService = applicationContext.getBean(WeatherService.class);
-//            // do something with your bean
-           System.out.println(weatherService.latestForecast());
-        }
-
     }
 }

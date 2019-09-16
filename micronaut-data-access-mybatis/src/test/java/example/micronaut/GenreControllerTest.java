@@ -1,8 +1,9 @@
 package example.micronaut;
 
 import example.micronaut.domain.Genre;
-import example.micronaut.genre.GenreSaveCommand;
-import example.micronaut.genre.GenreUpdateCommand;
+import example.micronaut.domain.ListingArguments;
+import example.micronaut.domain.GenreSaveCommand;
+import example.micronaut.domain.GenreUpdateCommand;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
@@ -42,8 +43,7 @@ public class GenreControllerTest {
     @Test
     public void supplyAnInvalidOrderTriggersValidationFailure() {
         assertThrows(HttpClientResponseException.class, () -> {
-            List<Genre> genres = getClient().retrieve(HttpRequest.GET("/genres/list?order=foo"), Argument.of(List.class, Genre.class));
-
+            List<Genre> genres = getClient().retrieve(HttpRequest.GET("/genres/list?order=desc"), Argument.of(List.class, Genre.class));
             assertNotNull(genres);
             assertEquals(0, genres.size());
         });
@@ -52,14 +52,13 @@ public class GenreControllerTest {
     @Test
     public void testFindNonExistingGenreReturns404() {
         assertThrows(HttpClientResponseException.class, () -> {
-            Genre genre = getClient().retrieve(HttpRequest.GET("/genres/99"), Argument.of(Genre.class));
-
+            Genre genre = getClient().retrieve(HttpRequest.GET("/genres/show/99"), Argument.of(Genre.class));
             assertNull(genre);
         });
     }
 
     private HttpResponse saveGenre(String genre) {
-        HttpRequest request = HttpRequest.POST("/genres", new GenreSaveCommand(genre)); // <3>
+        HttpRequest request = HttpRequest.POST("/genres/save", new GenreSaveCommand(genre)); // <3>
         return getClient().exchange(request);
     }
 
@@ -112,18 +111,18 @@ public class GenreControllerTest {
     }
 
     private Genre show(Long id) {
-        String uri = UriTemplate.of("/genres/{id}").expand(Collections.singletonMap("id", id));
+        String uri = UriTemplate.of("/genres/show/{id}").expand(Collections.singletonMap("id", id));
         HttpRequest request = HttpRequest.GET(uri);
         return getClient().retrieve(request, Genre.class);
     }
 
     private HttpResponse update(Long id, String name) {
-        HttpRequest request = HttpRequest.PUT("/genres", new GenreUpdateCommand(id, name));
+        HttpRequest request = HttpRequest.PUT("/genres/update/", new GenreUpdateCommand(id, name));
         return getClient().exchange(request);
     }
 
     private HttpResponse delete(Long id) {
-        HttpRequest request = HttpRequest.DELETE("/genres/" + id);
+        HttpRequest request = HttpRequest.DELETE("/genres/delete/" + id);
         return getClient().exchange(request);
     }
 

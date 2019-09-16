@@ -1,4 +1,4 @@
-package example.micronaut.genre;
+package example.micronaut.domain;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

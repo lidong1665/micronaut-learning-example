@@ -1,9 +1,10 @@
-package example.micronaut;
+package example.micronaut.controller;
 
+import example.micronaut.domain.ListingArguments;
 import example.micronaut.domain.Genre;
-import example.micronaut.genre.GenreRepository;
-import example.micronaut.genre.GenreSaveCommand;
-import example.micronaut.genre.GenreUpdateCommand;
+import example.micronaut.service.GenreRepository;
+import example.micronaut.domain.GenreSaveCommand;
+import example.micronaut.domain.GenreUpdateCommand;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
@@ -28,14 +29,14 @@ public class GenreController {
         this.genreRepository = genreRepository;
     }
 
-    @Get("/{id}") // <4>
+    @Get("/show/{id}") // <4>
     public Genre show(Long id) {
         return genreRepository
                 .findById(id)
                 .orElse(null); // <5>
     }
 
-    @Put("/") // <6>
+    @Put("/update") // <6>
     public HttpResponse update(@Body @Valid GenreUpdateCommand command) { // <7>
         int numberOfEntitiesUpdated = genreRepository.update(command.getId(), command.getName());
 
@@ -44,12 +45,12 @@ public class GenreController {
                 .header(HttpHeaders.LOCATION, location(command.getId()).getPath()); // <8>
     }
 
-    @Get(value = "/list{?args*}") // <9>
+    @Get("/list{?args*}") // <9>
     public List<Genre> list(@Valid ListingArguments args) {
         return genreRepository.findAll(args);
     }
 
-    @Post("/") // <10>
+    @Post("/save") // <10>
     public HttpResponse<Genre> save(@Body @Valid GenreSaveCommand cmd) {
         Genre genre = genreRepository.save(cmd.getName());
 
@@ -58,7 +59,7 @@ public class GenreController {
                 .headers(headers -> headers.location(location(genre.getId())));
     }
 
-    @Delete("/{id}") // <11>
+    @Delete("/delete/{id}") // <11>
     public HttpResponse delete(Long id) {
         genreRepository.deleteById(id);
         return HttpResponse.noContent();

@@ -1,7 +1,6 @@
-package example.micronaut.genre;
+package example.micronaut.domain;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
 
 public class GenreSaveCommand {
 

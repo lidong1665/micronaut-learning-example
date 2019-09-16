@@ -1,4 +1,4 @@
-package example.micronaut.genre;
+package example.micronaut.mapper;
 
 import example.micronaut.domain.Genre;
 import org.apache.ibatis.session.SqlSession;

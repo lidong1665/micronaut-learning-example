@@ -1,7 +1,8 @@
-package example.micronaut.genre;
+package example.micronaut.service;
 
-import example.micronaut.ListingArguments;
+import example.micronaut.domain.ListingArguments;
 import example.micronaut.domain.Genre;
+import example.micronaut.mapper.GenreMapper;
 import io.micronaut.validation.Validated;
 
 import javax.inject.Singleton;
